@@ -80,4 +80,10 @@ public class CertificateServiceImpl implements CertificationService {
         }
 
     }
+
+    @Override
+    public boolean certificateExists(Long userId, Long examId) {
+        return certificateRepository.existsByUserIdAndExamId(userId, examId);
+       
+    }
 }

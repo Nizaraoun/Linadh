@@ -19,4 +19,6 @@ public interface CertificationReapository extends JpaRepository<Certificate, Str
     // Find all valid certificates
     List<Certificate> findByIsValidTrue();
 
+    boolean existsByUserIdAndExamId(Long userId, Long examId);
+
 }

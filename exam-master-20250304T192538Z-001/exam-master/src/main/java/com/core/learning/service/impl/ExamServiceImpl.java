@@ -108,8 +108,12 @@ public void completeExam(Long examId, Long userId, List<String> selectedAnswers,
     evaluationRepository.save(evaluation);
 
     if (score > 50) {
-        // Pass all parameters to the certificate service
-        certificateService.createCertificate(userId, examId, username, examTitle, score, score);
+        // Check if the certificate already exists
+        boolean certificateExists = certificateService.certificateExists(userId, examId);
+        if (!certificateExists) {
+            // Pass all parameters to the certificate service
+            certificateService.createCertificate(userId, examId, username, examTitle, score, score);
+        }
     }
 }
     private void generateCertificate(Long userId, Long examId, int score) {

@@ -11,4 +11,5 @@ public interface CertificationService {
     Optional<Certificate> getCertificate(Long userId, Long examId);
     List<Certificate> getUserCertificates(Long userId);
     Certificate getCertificateById(String certificateId);
+    boolean certificateExists(Long userId, Long examId);
 }

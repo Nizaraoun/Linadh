@@ -10,9 +10,16 @@ export class CertificatService {
 
   constructor(private http: HttpClient) { }
 
-  downloadCertificate(userId: number, examId: number): Observable<Blob> {
+  downloadCertificate(userId: number, examId: number): void {
     const url = `${this.apiUrl}/download/${userId}/${examId}`;
     console.log('Download certificate URL:', url);
-    return this.http.get(url, { responseType: 'blob' });
+    this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = `certificate_${userId}_${examId}.pdf`;
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
 }

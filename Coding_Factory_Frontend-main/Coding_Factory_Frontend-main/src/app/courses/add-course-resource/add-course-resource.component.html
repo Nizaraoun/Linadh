@@ -1,0 +1,42 @@
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Add Course Resource</h2>
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="newResource.title" placeholder="Enter resource title" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="newResource.description" placeholder="Enter resource description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Resource Type:</label>
+      <select [(ngModel)]="newResource.resourceType">
+        <option value="document">Document</option>
+        <option value="video">Video</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Upload Document:</label>
+      <input type="file" (change)="onDocumentSelected($event)" />
+      <p *ngIf="newResource.link_doccument" class="success-text">Document uploaded successfully!</p>
+    </div>
+
+    <div class="form-group">
+      <label>Upload Video:</label>
+      <input type="file" (change)="onVideoSelected($event)" />
+      <p *ngIf="newResource.link_video" class="success-text">Video uploaded successfully!</p>
+    </div>
+
+    <div class="modal-actions">
+      <button (click)="closeModal()" class="cancel-btn">Cancel</button>
+      <button (click)="addResourceToCourse()" [disabled]="isAddButtonDisabled" class="submit-btn">
+        Add Resource
+      </button>
+    </div>
+  </div>
+</div>

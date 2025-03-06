@@ -1,0 +1,37 @@
+<div class="modal" [ngClass]="{ 'show': showModal }" tabindex="-1" role="dialog" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>Edit Course</h3>
+      <form (ngSubmit)="updateCourse()">
+        <!-- Course Title -->
+        <label for="title">Title</label>
+        <input id="title" [(ngModel)]="course.title" name="title" required />
+  
+        <!-- Course Description -->
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="course.description" name="description" required></textarea>
+  
+        <!-- Category Selection -->
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="course.categoryCourse" name="category" required>
+          <option *ngFor="let category of categoryEnum" [value]="category">{{ category }}</option>
+        </select>
+  
+        <!-- Course Start Date -->
+        <label for="startDate">Start Date</label>
+        <input id="startDate" type="date" [(ngModel)]="course.startDate" name="startDate" required />
+  
+        <!-- Course End Date -->
+        <label for="endDate">End Date</label>
+        <input id="endDate" type="date" [(ngModel)]="course.endDate" name="endDate" required />
+  
+        <!-- Image URL -->
+        <label for="image">Course Image URL</label>
+        <input id="image" type="url" [(ngModel)]="course.image" name="image" required pattern="https?://.+" />
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Update Course</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+  

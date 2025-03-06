@@ -1,0 +1,40 @@
+<div class="modal" [ngClass]="{ 'show': showModal }">
+    <div class="modal-content">
+     
+        <h1>Add New Course</h1>
+    
+      <form (ngSubmit)="addCourse()">
+        <!-- Course Title -->
+        <label for="title">Title</label>
+        <input id="title" [(ngModel)]="newCourse.title" name="title" required />
+  
+        <!-- Course Description -->
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="newCourse.description" name="description" required></textarea>
+  
+        <!-- Category Selection -->
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="newCourse.categoryCourse" name="category" required>
+          <option *ngFor="let category of categoryEnum" [value]="category">{{ category }}</option>
+        </select>
+  
+        <!-- Course Start Date -->
+        <label for="startDate">Start Date</label>
+        <input id="startDate" type="date" [(ngModel)]="newCourse.startDate" name="startDate" required />
+  
+        <!-- Course End Date -->
+        <label for="endDate">End Date</label>
+        <input id="endDate" type="date" [(ngModel)]="newCourse.endDate" name="endDate" required />
+  
+        <!-- Image URL -->
+        <label for="image">Course Image </label>
+        <input type="file" (change)="onImageSelected($event)" accept="image/*">
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn-primary">Add Course</button>
+      </form>
+  
+      <button (click)="closeModal()" class="btn-close">Close</button>
+    </div>
+  </div>
+  
